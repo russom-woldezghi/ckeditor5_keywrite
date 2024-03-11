@@ -1,0 +1,5 @@
+name: 'Ckeditor5 Keywrite'
+type: module
+description: 'Ckeditor5 Keywrite Integration'
+package: 'Ckeditor5'
+core_version_requirement: ^10

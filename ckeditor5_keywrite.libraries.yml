@@ -1,0 +1,12 @@
+keywrite:
+  js:
+    js/build/keywrite.js: { preprocess: false, minified: true }
+  dependencies:
+    - ckeditor5/ckeditor5
+
+# Loaded in the text format configuration form to provide styling for the icon
+# used in toolbar config.
+admin.keywrite:
+  css:
+    theme:
+      css/keywrite.admin.css: { }

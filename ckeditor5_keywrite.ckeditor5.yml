@@ -1,0 +1,18 @@
+# @see core/modules/ckeditor5/ckeditor5.ckeditor5.yml
+# @see https://www.drupal.org/project/ckeditor5_dev
+ckeditor5_keywrite_keywrite:
+  # Configuration that will be sent to CKEditor 5 JavaScript plugins.
+  ckeditor5:
+    plugins:
+      - keywrite.Keywrite
+
+  # Configuration that will be used directly by Drupal.
+  drupal:
+    label: 'keywrite'
+    library: ckeditor5_keywrite/keywrite
+    admin_library: ckeditor5_keywrite/admin.keywrite
+    toolbar_items:
+      keywrite:
+        label: 'keywrite'
+    # The plugin does not provide elements.
+    elements: false
