@@ -3,33 +3,33 @@ import { ButtonView } from 'ckeditor5/src/ui';
 import icon from '../../../../icons/keywrite.svg';
 
 export default class KeywriteButtonUI extends Plugin {
+    /**
+     * @inheritdoc
+     */
     init() {
+      this._createKeywriteButton();
+    }
+    
+    _createKeywriteButton() {
       const editor = this.editor;
+  
+      editor.ui.componentFactory.add('keywrite', (locale) => {
+        const command = editor.commands.get('keywriteInsert');
+        const view = new ButtonView(locale);
+  
+        view.set({
+          label: Drupal.t('Keywrite'),
+          icon: icon,
+          tooltip: true,
+        });
 
-      const buttonFactory = function () {
-        const button = new ButtonView();
-  
-        button.set(
-          {
-            label: 'Keywrite',
-            icon: icon,
-            tooltip: true,
-          }
-        );
-  
-        // // Change the model using the model writer.
-        // const write = writer => {
-        //   // Insert the text at the user's current position.
-        //   editor.model.insertContent(writer.createText('It works!'));
-        // }
-        // const executeHandler = () => {
-        //  editor.model.change(write);
-        // }
-        // button.on('execute', executeHandler);
-  
-        return button;
-      };
-  
-      editor.ui.componentFactory.add('keywrite', buttonFactory);
+        view.bind('isOn', 'isEnabled').to(command, 'value', 'isEnabled');
+        
+        this.listenTo(view, 'execute', () => {
+          editor.execute('keywriteInsert');
+        });
+
+        return view;
+      });
     }
 }
